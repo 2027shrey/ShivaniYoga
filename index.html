@@ -7,7 +7,7 @@
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght=0,200..800;1,200..800&display=swap');
         
         html {
             scroll-behavior: smooth;
@@ -30,20 +30,26 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Modal Visibility Utility */
+        .modal-active {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="text-stone-800 antialiased">
 
     <!-- Header / Navigation -->
     <header class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center relative z-10">
-        <!-- Brand name updated here -->
         <div class="text-xl md:text-2xl font-black tracking-widest text-emerald-900">TRANSFORM WITH SHIVANI</div>
-        <a href="#register" class="bg-emerald-800 text-white px-6 py-3 rounded-full font-semibold hover:bg-emerald-900 transition duration-300 shadow-md hover:shadow-emerald-900/20 text-sm tracking-wider uppercase">Join Live Class</a>
+        <div class="flex items-center gap-4">
+            <button onclick="openPoseModal()" class="text-emerald-800 border border-emerald-800 px-5 py-3 rounded-full font-semibold hover:bg-emerald-50 transition duration-300 text-sm tracking-wider uppercase hidden sm:inline-block">View All Poses</button>
+            <a href="#register" class="bg-emerald-800 text-white px-6 py-3 rounded-full font-semibold hover:bg-emerald-900 transition duration-300 shadow-md hover:shadow-emerald-900/20 text-sm tracking-wider uppercase">Join Live Class</a>
+        </div>
     </header>
 
     <!-- Main Hero Banner (Animated & Elegant) -->
     <section class="max-w-5xl mx-auto px-6 pt-12 pb-20 text-center relative">
-        <!-- Floating decorative ambient blur circles -->
         <div class="absolute top-10 left-1/4 w-72 h-72 bg-amber-100/50 rounded-full blur-3xl -z-10 animate-pulse"></div>
         <div class="absolute top-20 right-1/4 w-72 h-72 bg-emerald-100/40 rounded-full blur-3xl -z-10"></div>
 
@@ -69,14 +75,190 @@
             </span>
         </div>
 
-        <a href="#register" class="inline-block bg-emerald-800 text-white px-12 py-5 rounded-2xl font-bold text-lg hover:bg-emerald-900 transition duration-300 shadow-xl shadow-emerald-900/20 hover:-translate-y-0.5 transform">
-            Secure Your Spot for ₹700
-        </a>
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <a href="#register" class="inline-block bg-emerald-800 text-white px-12 py-5 rounded-2xl font-bold text-lg hover:bg-emerald-900 transition duration-300 shadow-xl shadow-emerald-900/20 hover:-translate-y-0.5 transform w-full sm:w-auto">
+                Secure Your Spot for ₹700
+            </a>
+            <button onclick="openPoseModal()" class="inline-block bg-amber-50 border-2 border-amber-400 text-stone-800 px-12 py-5 rounded-2xl font-bold text-lg hover:bg-amber-100 transition duration-300 w-full sm:w-auto flex items-center justify-center gap-2">
+                🧘‍♀️ Open Poses Directory
+            </button>
+        </div>
     </section>
+
+    <!-- Yoga Poses Overlay Popup Window -->
+    <div id="poseModal" class="fixed inset-0 bg-stone-900/80 backdrop-blur-md z-50 hidden transition-opacity duration-300 opacity-0 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-6xl max-h-[90vh] rounded-3xl overflow-hidden shadow-2xl flex flex-col transform scale-95 transition-transform duration-300">
+            
+            <!-- Popup Header -->
+            <div class="p-6 border-b border-stone-100 flex justify-between items-center bg-emerald-900 text-white">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold">Yoga Asana Directory</h2>
+                    <p class="text-emerald-200 text-xs md:text-sm mt-1">Explore the dynamic alignments and advanced postures from our digital live sessions.</p>
+                </div>
+                <button onclick="closePoseModal()" class="bg-emerald-800 hover:bg-emerald-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition font-bold text-lg">&times;</button>
+            </div>
+
+            <!-- Popup Body (Scrollable Natural Grid containing all 14 Asanas) -->
+            <div class="p-6 md:p-8 overflow-y-auto space-y-8 bg-stone-50/50">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-start">
+                    
+                    <!-- Pose 1 -->
+                    <div class="bg-white p-4 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col h-full justify-between">
+                        <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50 h-48">
+                            <img src="yoga1.jpeg" alt="Crane Pose / Crow Summary" class="max-w-full max-h-full object-contain rounded-xl">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-center text-stone-800 mt-4 text-base">Crane / Crow Pose</h3>
+                            <p class="text-xs text-center text-emerald-800 font-semibold italic mt-1">Bakasana</p>
+                        </div>
+                    </div>
+
+                    <!-- Pose 2 -->
+                    <div class="bg-white p-4 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col h-full justify-between">
+                        <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50 h-48">
+                            <img src="yoga2.jpeg" alt="Plow Pose" class="max-w-full max-h-full object-contain rounded-xl">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-center text-stone-800 mt-4 text-base">Plow Pose</h3>
+                            <p class="text-xs text-center text-emerald-800 font-semibold italic mt-1">Halasana</p>
+                        </div>
+                    </div>
+
+                    <!-- Pose 3 -->
+                    <div class="bg-white p-4 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col h-full justify-between">
+                        <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50 h-48">
+                            <img src="yoga3.jpeg" alt="Lizard Pose" class="max-w-full max-h-full object-contain rounded-xl">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-center text-stone-800 mt-4 text-base">Lizard Pose Variant</h3>
+                            <p class="text-xs text-center text-emerald-800 font-semibold italic mt-1">Utthan Pristhasana</p>
+                        </div>
+                    </div>
+
+                    <!-- Pose 4 -->
+                    <div class="bg-white p-4 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col h-full justify-between">
+                        <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50 h-48">
+                            <img src="yoga9.jpeg" alt="Wheel Pose" class="max-w-full max-h-full object-contain rounded-xl">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-center text-stone-800 mt-4 text-base">Wheel Pose</h3>
+                            <p class="text-xs text-center text-emerald-800 font-semibold italic mt-1">Urdhva Dhanurasana</p>
+                        </div>
+                    </div>
+
+                    <!-- Pose 5 -->
+                    <div class="bg-white p-4 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col h-full justify-between">
+                        <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50 h-48">
+                            <img src="yoga5.jpeg" alt="Cobra Pose" class="max-w-full max-h-full object-contain rounded-xl">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-center text-stone-800 mt-4 text-base">Cobra Pose</h3>
+                            <p class="text-xs text-center text-emerald-800 font-semibold italic mt-1">Bhujangasana</p>
+                        </div>
+                    </div>
+
+                    <!-- Pose 6 -->
+                    <div class="bg-white p-4 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col h-full justify-between">
+                        <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50 h-48">
+                            <img src="yoga6.jpeg" alt="Hand-to-Big-Toe Balance" class="max-w-full max-h-full object-contain rounded-xl">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-center text-stone-800 mt-4 text-base">Hand-to-Big-Toe Balance</h3>
+                            <p class="text-xs text-center text-emerald-800 font-semibold italic mt-1">Utthita Hasta Padangusthasana</p>
+                        </div>
+                    </div>
+
+                    <!-- Pose 7 -->
+                    <div class="bg-white p-4 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col h-full justify-between">
+                        <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50 h-48">
+                            <img src="yoga7.jpeg" alt="Standing Forward Fold" class="max-w-full max-h-full object-contain rounded-xl">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-center text-stone-800 mt-4 text-base">Standing Forward Fold</h3>
+                            <p class="text-xs text-center text-emerald-800 font-semibold italic mt-1">Uttanasana</p>
+                        </div>
+                    </div>
+
+                    <!-- Pose 8 -->
+                    <div class="bg-white p-4 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col h-full justify-between">
+                        <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50 h-48">
+                            <img src="yoga8.jpeg" alt="Seated Side Straddle Fold" class="max-w-full max-h-full object-contain rounded-xl">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-center text-stone-800 mt-4 text-base">Seated Side Straddle</h3>
+                            <p class="text-xs text-center text-emerald-800 font-semibold italic mt-1">Parsva Upavistha Konasana</p>
+                        </div>
+                    </div>
+
+                    <!-- Pose 9 -->
+                    <div class="bg-white p-4 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col h-full justify-between">
+                        <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50 h-48">
+                            <img src="yoga10.jpeg" alt="Forearm Plank" class="max-w-full max-h-full object-contain rounded-xl">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-center text-stone-800 mt-4 text-base">Forearm Plank</h3>
+                            <p class="text-xs text-center text-emerald-800 font-semibold italic mt-1">Phalakasana II</p>
+                        </div>
+                    </div>
+
+                    <!-- Pose 10 -->
+                    <div class="bg-white p-4 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col h-full justify-between">
+                        <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50 h-48">
+                            <img src="yoga11.jpeg" alt="Full Boat Pose" class="max-w-full max-h-full object-contain rounded-xl">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-center text-stone-800 mt-4 text-base">Full Boat Pose</h3>
+                            <p class="text-xs text-center text-emerald-800 font-semibold italic mt-1">Paripurna Navasana</p>
+                        </div>
+                    </div>
+
+                    <!-- Pose 11 -->
+                    <div class="bg-white p-4 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col h-full justify-between">
+                        <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50 h-48">
+                            <img src="yoga12.jpeg" alt="Reclining Hero Pose" class="max-w-full max-h-full object-contain rounded-xl">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-center text-stone-800 mt-4 text-base">Reclining Hero Pose</h3>
+                            <p class="text-xs text-center text-emerald-800 font-semibold italic mt-1">Supta Virasana</p>
+                        </div>
+                    </div>
+
+                    <!-- Pose 12 -->
+                    <div class="bg-white p-4 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col h-full justify-between">
+                        <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50 h-48">
+                            <img src="yoga13.jpeg" alt="Side Angle Pose" class="max-w-full max-h-full object-contain rounded-xl">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-center text-stone-800 mt-4 text-base">Side Angle Pose</h3>
+                            <p class="text-xs text-center text-emerald-800 font-semibold italic mt-1">Utthita Parsvakonasana</p>
+                        </div>
+                    </div>
+
+                    <!-- Pose 13 -->
+                    <div class="bg-white p-4 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col h-full justify-between">
+                        <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50 h-48">
+                            <img src="yoga14.jpeg" alt="3-Legged Downward Dog" class="max-w-full max-h-full object-contain rounded-xl">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-center text-stone-800 mt-4 text-base">3-Legged Down Dog</h3>
+                            <p class="text-xs text-center text-emerald-800 font-semibold italic mt-1">Eka Pada Adho Mukha Svanasana</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Popup Footer -->
+            <div class="p-4 border-t border-stone-100 bg-white text-center">
+                <a href="#register" onclick="closePoseModal()" class="inline-block bg-emerald-800 text-white px-6 py-2.5 rounded-xl font-semibold text-sm hover:bg-emerald-900 transition">
+                    Learn Active Form & Alignment — Secure Your Spot
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- Detailed Key Points Dashboard (Scroll-Revealed) -->
     <section class="reveal max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-8">
-        
         <!-- Special Programs Box -->
         <div class="bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 text-white p-8 md:p-12 rounded-3xl shadow-2xl relative overflow-hidden group hover:shadow-stone-900/30 transition duration-300">
             <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/5 rounded-full group-hover:scale-150 transition duration-700"></div>
@@ -116,52 +298,44 @@
         </div>
     </section>
 
-    <!-- Interactive Image Gallery Section -->
-    <section class="reveal max-w-6xl mx-auto px-6 py-20">
+    <!-- Interactive Image Gallery Section (Symmetrical 3-Column Layout) -->
+    <section class="reveal max-w-5xl mx-auto px-6 py-20">
         <div class="text-center max-w-2xl mx-auto mb-16">
             <h2 class="text-4xl font-bold text-stone-900 mb-4">Explore Your Practice</h2>
             <p class="text-stone-600 text-lg">A beautiful glimpse into the daily live asanas, precise alignments, and deep stretching routines you will master.</p>
         </div>
 
-        <!-- Interactive 4-Column Image Grid with .jpeg Extensions -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            
+        <!-- 3-Column Symmetrical Grid Setup -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
             <!-- Image 1 -->
-            <div class="group bg-white p-4 rounded-2xl shadow-md border border-stone-200/60 hover:shadow-xl hover:border-emerald-200 transition duration-500 transform hover:-translate-y-1">
-                <div class="rounded-xl overflow-hidden aspect-[3/4] bg-stone-100 relative">
-                    <img src="yoga1.jpeg" alt="Deep Heart Opening Asana" class="w-full h-full object-cover transition duration-700 ease-out group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+            <div class="group bg-white p-5 rounded-2xl shadow-md border border-stone-200/60 hover:shadow-xl hover:border-emerald-200 transition duration-500 transform hover:-translate-y-1 flex flex-col justify-between">
+                <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50/40 h-64">
+                    <img src="yoga5.jpeg" alt="Cobra Pose" class="max-w-full max-h-full object-contain rounded-xl transition duration-700 ease-out group-hover:scale-102">
                 </div>
-                <p class="text-center font-bold text-stone-800 mt-4 text-base tracking-wide group-hover:text-emerald-800 transition duration-300">Deep Heart Opening</p>
+                <p class="text-center font-bold text-stone-800 mt-5 text-base tracking-wide group-hover:text-emerald-800 transition duration-300">Cobra Pose (Bhujangasana)</p>
             </div>
 
             <!-- Image 2 -->
-            <div class="group bg-white p-4 rounded-2xl shadow-md border border-stone-200/60 hover:shadow-xl hover:border-emerald-200 transition duration-500 transform hover:-translate-y-1">
-                <div class="rounded-xl overflow-hidden aspect-[3/4] bg-stone-100 relative">
-                    <img src="yoga2.jpeg" alt="Finding Balance Asana" class="w-full h-full object-cover transition duration-700 ease-out group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+            <div class="group bg-white p-5 rounded-2xl shadow-md border border-stone-200/60 hover:shadow-xl hover:border-emerald-200 transition duration-500 transform hover:-translate-y-1 flex flex-col justify-between">
+                <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50/40 h-64">
+                    <img src="yoga6.jpeg" alt="Hand-to-Big-Toe Balance" class="max-w-full max-h-full object-contain rounded-xl transition duration-700 ease-out group-hover:scale-102">
                 </div>
-                <p class="text-center font-bold text-stone-800 mt-4 text-base tracking-wide group-hover:text-emerald-800 transition duration-300">Finding Balance</p>
+                <p class="text-center font-bold text-stone-800 mt-5 text-base tracking-wide group-hover:text-emerald-800 transition duration-300">Hand-to-Big-Toe Balance</p>
             </div>
 
             <!-- Image 3 -->
-            <div class="group bg-white p-4 rounded-2xl shadow-md border border-stone-200/60 hover:shadow-xl hover:border-emerald-200 transition duration-500 transform hover:-translate-y-1">
-                <div class="rounded-xl overflow-hidden aspect-[3/4] bg-stone-100 relative">
-                    <img src="yoga3.jpeg" alt="Calming the Mind Asana" class="w-full h-full object-cover transition duration-700 ease-out group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+            <div class="group bg-white p-5 rounded-2xl shadow-md border border-stone-200/60 hover:shadow-xl hover:border-emerald-200 transition duration-500 transform hover:-translate-y-1 flex flex-col justify-between">
+                <div class="rounded-xl overflow-hidden flex items-center justify-center bg-stone-50/40 h-64">
+                    <img src="yoga7.jpeg" alt="Standing Forward Fold" class="max-w-full max-h-full object-contain rounded-xl transition duration-700 ease-out group-hover:scale-102">
                 </div>
-                <p class="text-center font-bold text-stone-800 mt-4 text-base tracking-wide group-hover:text-emerald-800 transition duration-300">Calming the Mind</p>
+                <p class="text-center font-bold text-stone-800 mt-5 text-base tracking-wide group-hover:text-emerald-800 transition duration-300">Standing Forward Fold</p>
             </div>
-
-            <!-- Image 4 -->
-            <div class="group bg-white p-4 rounded-2xl shadow-md border border-stone-200/60 hover:shadow-xl hover:border-emerald-200 transition duration-500 transform hover:-translate-y-1">
-                <div class="rounded-xl overflow-hidden aspect-[3/4] bg-stone-100 relative">
-                    <img src="yoga4.jpeg" alt="Spinal Rejuvenation Asana" class="w-full h-full object-cover transition duration-700 ease-out group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                </div>
-                <p class="text-center font-bold text-stone-800 mt-4 text-base tracking-wide group-hover:text-emerald-800 transition duration-300">Spinal Rejuvenation</p>
-            </div>
-
+        </div>
+        
+        <div class="text-center mt-12">
+            <button onclick="openPoseModal()" class="text-sm font-bold tracking-wider text-emerald-800 uppercase underline hover:text-emerald-900 transition">
+                + View all remaining postures inside our database
+            </button>
         </div>
     </section>
 
@@ -201,8 +375,8 @@
         <p>&copy; 2026 Transform With Shivani. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript code handling Scroll-to-Reveal Animation Effects -->
-    <script {nonce}>
+    <!-- JavaScript code handling Scroll-to-Reveal and Modal Handlers -->
+    <script>
         function revealElements() {
             const reveals = document.querySelectorAll('.reveal');
             for (let i = 0; i < reveals.length; i++) {
@@ -218,6 +392,28 @@
         
         window.addEventListener('scroll', revealElements);
         window.addEventListener('load', revealElements);
+
+        // Modal Functionality for Yoga Poses
+        function openPoseModal() {
+            const modal = document.getElementById('poseModal');
+            modal.classList.remove('hidden');
+            document.body.classList.add('modal-active');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.firstElementChild.classList.remove('scale-95');
+            }, 10);
+        }
+
+        // Modal Functionality for Closing
+        function closePoseModal() {
+            const modal = document.getElementById('poseModal');
+            modal.classList.add('opacity-0');
+            modal.firstElementChild.classList.add('scale-95');
+            document.body.classList.remove('modal-active');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
     </script>
 
 </body>
